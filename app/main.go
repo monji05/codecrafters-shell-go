@@ -41,7 +41,7 @@ func callType(text string) {
 	arg := text[4:]
 	arg = strings.TrimSpace(arg)
 	if slices.Index(builtInCommands, arg) != -1 {
-		fmt.Printf("%s is a shell built in \n", text[5:])
+		fmt.Printf("%s is a shell builtin \n", text[5:])
 	} else {
 		fmt.Printf("%s: not found \n", arg)
 	}
