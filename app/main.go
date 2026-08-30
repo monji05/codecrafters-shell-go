@@ -33,7 +33,7 @@ func main() {
 		if cmd == "exit" {
 			break
 		} else if cmd == "echo" {
-			fmt.Print(args)
+			fmt.Printf("%s \n", command[5:])
 		} else if cmd == "type" {
 			if slices.Contains(builtInCommands, args[0]) {
 				fmt.Printf("%s is a shell builtin \n", args[0])
@@ -42,6 +42,8 @@ func main() {
 			} else {
 				fmt.Printf("%s: not found \n", args[0])
 			}
+		} else {
+			fmt.Printf("%s: command not found \n", cmd)
 		}
 
 	}
