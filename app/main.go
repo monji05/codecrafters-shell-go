@@ -49,8 +49,6 @@ func main() {
 				for index, arg := range args {
 					fmt.Printf("Arg #%d: %s", index+1, arg)
 				}
-			} else {
-				fmt.Printf("%s: command not found \n", cmd)
 			}
 		}
 	}
