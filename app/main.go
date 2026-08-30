@@ -21,7 +21,7 @@ func main() {
 	for scanner.Scan() {
 		text := scanner.Text()
 		if text == "exit" {
-			os.Exit(1)
+			os.Exit(127)
 		} else {
 			fmt.Printf("%s: command not found \n", text)
 		}
