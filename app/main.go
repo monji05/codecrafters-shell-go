@@ -44,9 +44,9 @@ func main() {
 			}
 		} else {
 			fmt.Printf("Program was passed %d args (including program name).\n", len(tokens))
-			fmt.Printf("Arg #0 (program name): %s", cmd)
+			fmt.Printf("Arg #0 (program name): %s\n", cmd)
 			for index, arg := range args {
-				fmt.Printf("Arg #%d: %s", index+1, arg)
+				fmt.Printf("Arg #%d: %s\n", index+1, arg)
 			}
 		}
 	}
