@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 	"slices"
 	"strings"
 )
@@ -43,6 +44,14 @@ func callType(text string) {
 	if slices.Index(builtInCommands, arg) != -1 {
 		fmt.Printf("%s is a shell builtin \n", text[5:])
 	} else {
+		path, _ := exec.LookPath(arg)
+		fileInfo, _ := os.Stat(path)
+		permission := fileInfo.Mode().Perm().String()
+		_, _, isExecutable := strings.Cut(permission, "x")
+		if isExecutable {
+			fmt.Printf("%s is %s \n", arg, path)
+			return
+		}
 		fmt.Printf("%s: not found \n", arg)
 	}
 }
