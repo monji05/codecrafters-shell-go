@@ -43,12 +43,10 @@ func main() {
 				fmt.Printf("%s: not found \n", args[0])
 			}
 		} else {
-			if _, err := exec.LookPath(args[0]); err == nil {
-				fmt.Printf("Program was passed %d args \n", len(args))
-				fmt.Printf("Arg #0 (program name): %s", cmd)
-				for index, arg := range args {
-					fmt.Printf("Arg #%d: %s", index+1, arg)
-				}
+			fmt.Printf("Program was passed %d args \n", len(args))
+			fmt.Printf("Arg #0 (program name): %s", cmd)
+			for index, arg := range args {
+				fmt.Printf("Arg #%d: %s", index+1, arg)
 			}
 		}
 	}
