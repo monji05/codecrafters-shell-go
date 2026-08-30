@@ -15,12 +15,12 @@ var _ = fmt.Print
 var builtInCommands = []string{"echo", "exit", "type"}
 
 func main() {
-	reader := bufio.NewReader()(os.Stdin)
+	reader := bufio.NewReader(os.Stdin)
 	// TODO: Uncomment the code below to pass the first stage
 	for {
 		fmt.Print("$ ")
 
-		command, err := reader.ReadString()
+		command, err := reader.ReadString('\n')
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error reading input: ", err)
 		}
