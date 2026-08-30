@@ -38,7 +38,7 @@ func main() {
 			if slices.Contains(builtInCommands, args[0]) {
 				fmt.Printf("%s is a shell builtin \n", args[0])
 			} else if _, err := exec.LookPath(args[0]); err == nil {
-				execCommand := exec.Command(cmd, args)
+				execCommand := exec.Command(cmd, args...)
 				execCommand.Stdout = os.Stdout
 				execCommand.Stderr = os.Stderr
 				execCommand.Run()
