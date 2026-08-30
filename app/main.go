@@ -19,6 +19,5 @@ func main() {
 
 	text = strings.ReplaceAll(text, "\n", "")
 
-	fmt.Print(text)
-	fmt.Print(": command not found")
+	fmt.Println(text + ": command not found")
 }
