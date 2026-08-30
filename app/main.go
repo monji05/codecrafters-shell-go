@@ -20,7 +20,11 @@ func main() {
 
 	for scanner.Scan() {
 		text := scanner.Text()
-		fmt.Printf("%s: command not found \n", text)
+		if text == "exit" {
+			os.Exit(1)
+		} else {
+			fmt.Printf("%s: command not found \n", text)
+		}
 		fmt.Print("$ ")
 	}
 }
