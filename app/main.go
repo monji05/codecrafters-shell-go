@@ -37,7 +37,7 @@ func main() {
 		} else if cmd == "type" {
 			if slices.Contains(builtInCommands, args[0]) {
 				fmt.Printf("%s is a shell builtin \n", args[0])
-			} else if _, err := exec.LookPath(args[0]); err == nil {
+			} else if _, err := exec.LookPath(cmd); err == nil {
 				execCommand := exec.Command(cmd, args...)
 				execCommand.Stdout = os.Stdout
 				execCommand.Stderr = os.Stderr
@@ -46,7 +46,7 @@ func main() {
 				fmt.Printf("%s: not found \n", args[0])
 			}
 		} else {
-			fmt.Printf("%s: command not found", cmd)
+			fmt.Printf("%s: command not found\n", cmd)
 		}
 	}
 }
