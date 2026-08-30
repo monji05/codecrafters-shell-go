@@ -15,39 +15,34 @@ var _ = fmt.Print
 var builtInCommands = []string{"echo", "exit", "type"}
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	reader := bufio.NewReader()(os.Stdin)
 	// TODO: Uncomment the code below to pass the first stage
-	fmt.Print("$ ")
-
-	if scanner.Err() != nil {
-		return
-	}
-
-	for scanner.Scan() {
-		text := scanner.Text()
-		if text == "exit" {
-			break
-		} else if strings.HasPrefix(text, "echo") {
-			fmt.Println(text[5:])
-		} else if strings.HasPrefix(text, "type") {
-			callType(text)
-		} else {
-			fmt.Printf("%s: command not found \n", text)
-		}
+	for {
 		fmt.Print("$ ")
-	}
-}
 
-func callType(text string) {
-	arg := text[4:]
-	arg = strings.TrimSpace(arg)
-	if slices.Index(builtInCommands, arg) != -1 {
-		fmt.Printf("%s is a shell builtin \n", text[5:])
-	} else {
-		if path, err := exec.LookPath(arg); err == nil {
-			fmt.Printf("%s is %s \n", arg, path)
-		} else {
-			fmt.Printf("%s: not found \n", arg)
+		command, err := reader.ReadString()
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error reading input: ", err)
 		}
+
+		command = strings.TrimSpace(command)
+		tokens := strings.Split(command, " ")
+
+		cmd, args := tokens[0], tokens[1:]
+
+		if cmd == "exit" {
+			break
+		} else if cmd == "echo" {
+			fmt.Print(args)
+		} else if cmd == "type" {
+			if slices.Contains(builtInCommands, args[0]) {
+				fmt.Printf("%s is a shell builtin \n", args[0])
+			} else if path, err := exec.LookPath(arg); err == nil {
+				fmt.Printf("%s is %s \n", arg, path)
+			} else {
+				fmt.Printf("%s: not found \n", arg)
+			}
+		}
+
 	}
 }
