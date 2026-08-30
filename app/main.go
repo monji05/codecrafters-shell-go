@@ -43,7 +43,7 @@ func main() {
 				fmt.Printf("%s: not found \n", args[0])
 			}
 		} else {
-			fmt.Printf("Program was passed %d args \n", len(tokens))
+			fmt.Printf("Program was passed %d args (including program name).\n", len(tokens))
 			fmt.Printf("Arg #0 (program name): %s", cmd)
 			for index, arg := range args {
 				fmt.Printf("Arg #%d: %s", index+1, arg)
