@@ -12,7 +12,7 @@ import (
 // Ensures gofmt doesn't remove the "fmt" import in stage 1 (feel free to remove this!)
 var _ = fmt.Print
 
-var builtInCommands = []string{"echo", "exit", "type"}
+var builtInCommands = []string{"echo", "exit", "type", "pwd"}
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
