@@ -42,6 +42,15 @@ func main() {
 			} else {
 				fmt.Printf("%s: not found \n", args[0])
 			}
+		} else if cmd == "pwd" {
+			dir, err := os.Getwd()
+			if err != nil {
+				fmt.Printf("Failed to get current directory: %v", err)
+				return
+			}
+
+			fmt.Println(dir)
+
 		} else if _, err := exec.LookPath(cmd); err == nil {
 			executeCommand := exec.Command(cmd, args...)
 			executeCommand.Stdout = os.Stdout
