@@ -61,7 +61,6 @@ func main() {
 				os.Chdir(homedir)
 			} else if err := os.Chdir(args[0]); err != nil {
 				fmt.Printf("cd: %s: No such file or directory\n", args[0])
-				return
 			}
 		} else if _, err := exec.LookPath(cmd); err == nil {
 			executeCommand := exec.Command(cmd, args...)
