@@ -12,7 +12,7 @@ import (
 // Ensures gofmt doesn't remove the "fmt" import in stage 1 (feel free to remove this!)
 var _ = fmt.Print
 
-var builtInCommands = []string{"echo", "exit", "type", "pwd"}
+var builtInCommands = []string{"echo", "exit", "type", "pwd", "cmd"}
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
@@ -51,6 +51,18 @@ func main() {
 
 			fmt.Println(dir)
 
+		} else if cmd == "cd" {
+			if args[0] == "~" {
+				homedir, err := os.UserHomeDir()
+				if err != nil {
+					panic(err)
+				}
+
+				os.Chdir(homedir)
+			} else if err := os.Chdir(args[0]); err != nil {
+				fmt.Printf("cd: %s: No such file or directory\n", args[0])
+				return
+			}
 		} else if _, err := exec.LookPath(cmd); err == nil {
 			executeCommand := exec.Command(cmd, args...)
 			executeCommand.Stdout = os.Stdout
